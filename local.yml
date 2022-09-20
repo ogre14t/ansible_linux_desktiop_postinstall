@@ -1,15 +1,55 @@
 ---
 - hosts: localhost
-  connection: local # runs on local machine
-  become: true # sets sudo
+  connection: local
+  become: true
 
   tasks:
+
+  - name: add rpmfusion repo
+    dnf:
+      name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+      state: present
+
+  - name: update and upgrade dnf
+    dnf:
+      name: '*'
+      state: latest
+
   - name: install packages
     package: 
       name: 
         - htop
+        - curl
+        - wget
+        - git
+        - zsh
+        - neofetch
+        - gnome-tweaks
+        - gnome-shell-extensions
         - tmux
         - vim
+        - python3-psutil
+        - python3-pip
+        - python3-venv
+        - calibre
+        - gimp
+        - inkscape
+        - libreoffice
+        - libreoffice-langpack-en
+        - steam
+        - dnf-plugins-core
+        - brave-browser
+        - bitwarden
+        - virtualbox
+        - discord
+        - slack
+        - signal-desktop
+        - synology-drive-client
+        - synology-drive-client-nautilus
+        - flameshot
+
+  - name: run shell script to install starship
+    shell: curl -fsSL https://starship.rs/install.sh | sh
 
   - name: copy wallpaper file
     copy:
@@ -29,5 +69,33 @@
     dconf: 
       key: ".org/gnome/desktop/background/picture-options"
       value: "'zoom'"
+
+  - name: copy .bashrc file
+    copy:
+      src: files/.bashrc
+      dest: /home/owen/.bashrc
+      owner: owen
+      group: owen
+
+  - name: copy .vimrc file
+    copy:
+      src: files/.vimrc
+      dest: /home/owen/.vimrc
+      owner: owen
+      group: owen
+
+  - name: copy .zshrc file
+    copy:
+      src: files/.zshrc
+      dest: /home/owen/.zshrc
+      owner: owen
+      group: owen
+
+  - name: copy starship.toml file
+    copy:
+      src: files/starship.toml
+      dest: /home/owen/.config/starship.toml
+      owner: owen
+      group: owen
 
   
