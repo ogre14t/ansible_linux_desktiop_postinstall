@@ -4,7 +4,9 @@
   become: true # sets sudo
 
   tasks:
-  - name: install htop
+  - name: install packages
     package: 
-      name: htop
-      
+      name: 
+        - htop
+        - tmux
+        - vim
