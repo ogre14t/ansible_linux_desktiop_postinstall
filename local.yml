@@ -4,16 +4,29 @@
   become: true
 
   tasks:
-
   - name: add rpmfusion repo
     dnf:
       name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
       state: present
+    when: ansible_distribution == "Fedora"
 
   - name: update and upgrade dnf
     dnf:
       name: '*'
       state: latest
+    when: ansible_distribution == "Fedora"
+
+  - name: update and upgrade apt
+    apt:
+      name: '*'
+      state: latest
+    when: ansible_distribution == "Ubuntu, Debian, Pop!_OS, Linux Mint"
+
+  - name: update and upgrade pacman
+    pacman:
+      name: '*'
+      state: latest
+    when: ansible_distribution == "Arch, Manjaro, EndeavourOS, Antergos"
 
   - name: install packages
     package: 
@@ -46,29 +59,17 @@
         - signal-desktop
         - synology-drive-client
         - synology-drive-client-nautilus
-        - flameshot
+        - flameshot 
 
   - name: run shell script to install starship
     shell: curl -fsSL https://starship.rs/install.sh | sh
 
-  - name: copy wallpaper file
+  - name: copy wallpaper folder
     copy:
-      src: files/wallpaper.png
-      dest: /usr/share/backgrounds/wallpaper.png
+      src: files/wallpapers/*
+      dest: /usr/share/backgrounds/
       owner: root
       group: root
-
-  - name: set wallpaper
-    become_user: owen
-    dconf:
-      key: "/org/gnome/desktop/background/picture-uri"
-      value: "'file:///usr/share/backgrounds/wallpaper.png'"
-
-  - name: set wallpaper position
-    become_user: owen
-    dconf: 
-      key: ".org/gnome/desktop/background/picture-options"
-      value: "'zoom'"
 
   - name: copy .bashrc file
     copy:
@@ -97,6 +98,9 @@
       dest: /home/owen/.config/starship.toml
       owner: owen
       group: owen
+
+  - name: set zsh as default shell
+    shell: chsh -s /bin/zsh owen
 
   - name: add ansible user
     user: 
