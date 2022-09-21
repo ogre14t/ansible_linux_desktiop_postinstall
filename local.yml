@@ -68,11 +68,7 @@
         - steam
         - dnf-plugins-core
         - flameshot
-      state: latest
-
-  - name: install flatpak
-    package:
-      name: flatpak
+        - flatpak
       state: latest
 
   - name: install flatpak packages
