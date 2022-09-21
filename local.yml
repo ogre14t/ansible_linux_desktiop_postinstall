@@ -74,7 +74,7 @@
   - name: install brave browser 
     shell: |
      curl -fsSL https://brave-browser-rpm-release.s3.brave.com/brave-core.asc | sudo gpg --dearmor -o /etc/pki/rpm-gpg/RPM-GPG-KEY-brave-browser
-     expect "/etc/pki/rpm-gpg/RPM-GPG-KEY-brave-browser exists. Overwrite? (y/N)"
+     expect "Overwrite? (y/N)"
      send "y\r"
     when: ansible_distribution == "Fedora"
 
