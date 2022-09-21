@@ -98,9 +98,7 @@
   - name: install flatpak packages from flathub
     community.general.flatpak:
       name:
-      # - com.brave.Browser
       - com.bitwarden.desktop
-      - org.virtualbox.VirtualBox
       - com.discordapp.Discord
       - com.slack.Slack
       - org.signal.Signal
