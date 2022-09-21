@@ -50,6 +50,7 @@
     package: 
       name: 
         - htop
+        - util-linux-user
         - curl
         - wget
         - git
