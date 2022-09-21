@@ -81,6 +81,7 @@
       - com.slack.Slack
       - org.signal.Signal
       - com.synology.SynologyDrive
+    state: present
 
   - name: run shell script to install starship
     shell: curl -fsSL https://starship.rs/install.sh | sh
