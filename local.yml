@@ -111,35 +111,35 @@
 
   - name: copy wallpaper folder
     copy:
-      src: /files/wallpapers
+      src: files/wallpapers
       dest: /usr/share/backgrounds/
       owner: root
       group: root
 
   - name: copy .bashrc file
     copy:
-      src: /files/.bashrc
+      src: files/.bashrc
       dest: /home/owen/.bashrc
       owner: owen
       group: owen
 
   - name: copy .vimrc file
     copy:
-      src: /files/.vimrc
+      src: files/.vimrc
       dest: /home/owen/.vimrc
       owner: owen
       group: owen
 
   - name: copy .zshrc file
     copy:
-      src: /files/.zshrc
+      src: files/.zshrc
       dest: /home/owen/.zshrc
       owner: owen
       group: owen
 
   - name: copy starship.toml file
     copy:
-      src: /files/starship.toml
+      src: files/starship.toml
       dest: /home/owen/.config/starship.toml
       owner: owen
       group: owen
@@ -154,7 +154,7 @@
 
   - name: add ansible user to sudoers
     copy:
-      src: /files/ansible_user
+      src: files/ansible_user
       dest: /etc/sudoers.d/ansible_user
       owener: root
       group: root
