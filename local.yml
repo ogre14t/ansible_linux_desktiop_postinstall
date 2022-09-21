@@ -78,6 +78,13 @@
       flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
       method: user
 
+  - name: add the flathub-beta repo
+    community.general.flatpak_remote:
+      name: flathub-beta
+      state: present
+      flatpakrepo_url: https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo
+      method: user
+
   - name: install flatpak packages from fedora
     community.general.flatpak:
       name:
