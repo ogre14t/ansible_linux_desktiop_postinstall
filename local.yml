@@ -73,6 +73,7 @@
 
   - name: install flatpak packages
     community.general.flatpak:
+      name:
       - org.gnome.Extensions
       - com.brave.Browser
       - com.bitwarden.desktop
