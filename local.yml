@@ -4,6 +4,18 @@
   become: true
 
   tasks:
+  - name: import rpmfusion free security keys
+    rpm_key:
+      key: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-36.noarch.rpm
+      state: present
+    when: ansible_distribution == "Fedora"
+
+  - name: import rpmfusion nonfree security keys
+    rpm_key:
+      key: https://download1.rpmfusion.org/free/fedora/rpmfusion-nonfree-release-36.noarch.rpm
+      state: present
+    when: ansible_distribution == "Fedora"
+
   - name: add rpmfusion repo
     dnf:
       name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-36.noarch.rpm
