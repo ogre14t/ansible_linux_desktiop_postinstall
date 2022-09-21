@@ -74,7 +74,7 @@
   - name: add the flathub repo
     community.general.flatpak_remote:
       name: flathub
-      flatpak_url: https://flathub.org/repo/flathub.flatpakrepo
+      flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
 
   - name: install flatpak packages
     community.general.flatpak:
