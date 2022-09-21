@@ -72,10 +72,6 @@
         - flatpak
       state: latest
 
-  # - name: install brave browser 
-  #   shell: curl -fsSL https://brave-browser-rpm-release.s3.brave.com/brave-core.asc | sudo gpg --dearmor -o /etc/pki/rpm-gpg/RPM-GPG-KEY-brave-browser
-  #   when: ansible_distribution == "Fedora"
-
   - name: add the flathub repo
     community.general.flatpak_remote:
       name: flathub
@@ -158,7 +154,7 @@
     copy:
       src: files/ansible_user
       dest: /etc/sudoers.d/ansible_user
-      owener: root
+      owner: root
       group: root
       mode: 0440
 
