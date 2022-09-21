@@ -78,10 +78,15 @@
       flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
       method: user
 
-  - name: install flatpak packages
+  - name: install flatpak packages from fedora
     community.general.flatpak:
       name:
       - org.gnome.Extensions
+      remote: fedora
+
+  - name: install flatpak packages from flathub
+    community.general.flatpak:
+      name:
       - com.brave.Browser
       - com.bitwarden.desktop
       - org.virtualbox.VirtualBox
@@ -89,7 +94,8 @@
       - com.slack.Slack
       - org.signal.Signal
       - com.synology.SynologyDrive
-      remote: fedora
+      remote: flathub
+
 
   - name: run shell script to install starship
     shell: curl -fsSL https://starship.rs/install.sh | sh
