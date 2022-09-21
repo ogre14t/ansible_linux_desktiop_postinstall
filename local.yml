@@ -22,6 +22,12 @@
       state: present
     when: ansible_distribution == "Fedora"
 
+  - name: add rpmfusion repo
+    dnf:
+      name: https://download1.rpmfusion.org/free/fedora/rpmfusion-nonfree-release-36.noarch.rpm
+      state: present
+    when: ansible_distribution == "Fedora"
+
   - name: update and upgrade dnf
     dnf:
       name: '*'
@@ -50,12 +56,10 @@
         - zsh
         - neofetch
         - gnome-tweaks
-        - gnome-shell-extensions
         - tmux
         - vim
         - python3-psutil
         - python3-pip
-        - python3-venv
         - calibre
         - gimp
         - inkscape
@@ -63,16 +67,24 @@
         - libreoffice-langpack-en
         - steam
         - dnf-plugins-core
-        - brave-browser
-        - bitwarden
-        - virtualbox
-        - discord
-        - slack
-        - signal-desktop
-        - synology-drive-client
-        - synology-drive-client-nautilus
         - flameshot
       state: latest
+
+  - name: install flatpak
+    package:
+      name: flatpak
+      state: latest
+
+  - name: install flatpak packeges
+    flatpak:
+      - org.gnome.Extensions
+      - com.brave.Browser
+      - com.bitwarden.desktop
+      - org.virtualbox.VirtualBox
+      - com.discordapp.Discord
+      - com.slack.Slack
+      - org.signal.Signal
+      - com.synology.SynologyDrive
 
   - name: run shell script to install starship
     shell: curl -fsSL https://starship.rs/install.sh | sh
