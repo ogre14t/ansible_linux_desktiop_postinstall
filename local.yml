@@ -72,8 +72,7 @@
       state: latest
 
   - name: add the flathub repo
-    become: yes
-    community.general.flatpak_repo:
+    community.general.flatpak_remote:
       name: flathub
       flatpak_url: https://flathub.org/repo/flathub.flatpakrepo
 
