@@ -107,7 +107,7 @@
 
 
   - name: run shell script to install starship
-    shell: curl -fsSL https://starship.rs/install.sh | sh -y
+    shell: curl -fsSL https://starship.rs/install.sh | sh -s -- -y
 
   - name: copy wallpaper folder
     copy:
