@@ -89,7 +89,7 @@
       - com.slack.Slack
       - org.signal.Signal
       - com.synology.SynologyDrive
-    remote: fedora
+      remote: fedora
 
   - name: run shell script to install starship
     shell: curl -fsSL https://starship.rs/install.sh | sh
