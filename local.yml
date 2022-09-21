@@ -120,7 +120,4 @@
       name: "ansible-pull"
       user: "ansible_user"
       minute: "*/10"
-      job: "ansible-pull -o -U https://github.com/ogre14t/ansible_linux_desktop_postinstall.git  
-
-
-  
+      job: "ansible-pull -o -U https://github.com/ogre14t/ansible_linux_desktop_postinstall.git"
