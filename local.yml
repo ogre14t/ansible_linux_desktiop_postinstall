@@ -71,6 +71,11 @@
         - flatpak
       state: latest
 
+  - name: add the flathub repo
+    community.general.flatpak_repo:
+      repo: flathub
+      url: https://flathub.org/repo/flathub.flatpakrepo
+
   - name: install flatpak packages
     community.general.flatpak:
       name:
