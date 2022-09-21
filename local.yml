@@ -78,13 +78,6 @@
       flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
       method: user
 
-  - name: add Gnome flatpak repo
-    community.general.flatpak_remote:
-      name: gnome
-      state: present
-      flatpakrepo_url: https://sdk.gnome.org/gnome.flatpakrepo
-      method: user
-
   - name: install flatpak packages
     community.general.flatpak:
       name:
