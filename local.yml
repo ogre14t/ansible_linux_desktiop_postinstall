@@ -111,7 +111,7 @@
 
   - name: copy wallpaper folder
     copy:
-      src: /files/wallpapers/
+      src: /files/wallpapers
       dest: /usr/share/backgrounds/
       owner: root
       group: root
