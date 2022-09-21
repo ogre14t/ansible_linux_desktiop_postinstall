@@ -51,6 +51,7 @@
       name: 
         - htop
         - util-linux-user
+        - cronie
         - curl
         - wget
         - git
