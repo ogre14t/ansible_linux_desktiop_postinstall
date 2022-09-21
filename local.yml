@@ -72,9 +72,9 @@
         - flatpak
       state: latest
 
-  - name: install brave browser 
-    shell: curl -fsSL https://brave-browser-rpm-release.s3.brave.com/brave-core.asc | sudo gpg --dearmor -o /etc/pki/rpm-gpg/RPM-GPG-KEY-brave-browser
-    when: ansible_distribution == "Fedora"
+  # - name: install brave browser 
+  #   shell: curl -fsSL https://brave-browser-rpm-release.s3.brave.com/brave-core.asc | sudo gpg --dearmor -o /etc/pki/rpm-gpg/RPM-GPG-KEY-brave-browser
+  #   when: ansible_distribution == "Fedora"
 
   - name: add the flathub repo
     community.general.flatpak_remote:
@@ -104,6 +104,7 @@
       - com.slack.Slack
       - org.signal.Signal
       - com.synology.SynologyDrive
+      - com.brave.Browser
       remote: flathub
 
 
