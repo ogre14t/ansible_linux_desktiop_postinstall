@@ -59,7 +59,8 @@
         - signal-desktop
         - synology-drive-client
         - synology-drive-client-nautilus
-        - flameshot 
+        - flameshot
+      state: latest
 
   - name: run shell script to install starship
     shell: curl -fsSL https://starship.rs/install.sh | sh
