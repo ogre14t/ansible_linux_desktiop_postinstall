@@ -72,7 +72,7 @@
       state: latest
 
   - name: install flatpak packages
-    ansible.builtin.flatpak:
+    flatpak:
       - org.gnome.Extensions
       - com.brave.Browser
       - com.bitwarden.desktop
