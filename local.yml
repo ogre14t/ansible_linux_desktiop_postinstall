@@ -75,7 +75,7 @@
       name: flatpak
       state: latest
 
-  - name: install flatpak packeges
+  - name: install flatpak packages
     flatpak:
       - org.gnome.Extensions
       - com.brave.Browser
