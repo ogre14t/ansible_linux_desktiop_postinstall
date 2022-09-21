@@ -98,4 +98,25 @@
       owner: owen
       group: owen
 
+  - name: add ansible user
+    user: 
+      name: ansible_user
+      system: yes
+
+  - name: add ansible user to sudoers
+    copy:
+      src: files/ansible_user
+      dest: /etc/sudoers.d/ansible_user
+      owener: root
+      group: root
+      mode: 0440
+
+  - name: add ansible-pull cron job
+    cron:
+      name: "ansible-pull"
+      user: "ansible_user"
+      minute: "*/10"
+      job: "ansible-pull -o -U https://github.com/ogre14t/ansible_linux_desktop_postinstall.git  
+
+
   
