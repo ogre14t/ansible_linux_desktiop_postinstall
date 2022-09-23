@@ -102,6 +102,7 @@
       - org.signal.Signal
       - com.synology.SynologyDrive
       - com.brave.Browser
+      - com.visualstudio.code
       remote: flathub
 
 
