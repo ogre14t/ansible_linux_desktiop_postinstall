@@ -73,22 +73,22 @@
         - flatpak
       state: latest
 
-  # - name: Add flathub repo
-  #   command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  - name: Add flathub repo
+    command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
   - name: add the flathub repo
     community.general.flatpak_remote:
       name: flathub
       state: present
       flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-      method: system
+      method: user
 
   - name: add the flathub-beta repo
     community.general.flatpak_remote:
       name: flathub-beta
       state: present
       flatpakrepo_url: https://flathub.org/beta-repo/flathub-beta.flatpakrepo
-      method: system
+      method: user
 
   - name: install flatpak packages from fedora
     community.general.flatpak:
