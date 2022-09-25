@@ -81,14 +81,14 @@
       name: flathub
       state: present
       flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-      method: root
+      method: system
 
   - name: add the flathub-beta repo
     community.general.flatpak_remote:
       name: flathub-beta
       state: present
       flatpakrepo_url: https://flathub.org/beta-repo/flathub-beta.flatpakrepo
-      method: root
+      method: system
 
   - name: install flatpak packages from fedora
     community.general.flatpak:
