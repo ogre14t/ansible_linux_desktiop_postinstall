@@ -11,26 +11,24 @@ fi
 
 EDITOR=/usr/bin/vim
 
-if command pacman > /dev/null; then 
-  alias upy="yay -Syyu"
-  alias inst="sudo pacman -S"
-  alias yinst="yay -S"
-  alias searchy="yay -Ss"
-  alias modzsh="sudo vim ~/.zshrc"
-  alias modfile="sudo vim"
-elif command apt > /dev/null; then
-  alias upy="sudo apt update && sudo apt upgrade && sudo apt autoremove"
-  alias inst="sudo apt install"
-  alias searchy="apt search"
-  alias modzsh="sudo vim ~/.zshrc"
-  alias modfile="sudo vim"
-elif command dnf > /dev/null; then
-  alias upy="sudo dnf update && sudo dnf upgrade && sudo dnf autoremove && sudo flatpak update -y"
-  alias inst="sudo dnf install"
-  alias searchy="dnf search"
-  alias modzsh="sudo vim ~/.zshrc"
-  alias modfile="sudo vim"
-fi
+# alias upy="yay -Syyu"
+# alias inst="sudo pacman -S"
+# alias yinst="yay -S"
+# alias searchy="yay -Ss"
+# alias modzsh="sudo vim ~/.zshrc"
+# alias modfile="sudo vim"
+
+# alias upy="sudo apt update && sudo apt upgrade && sudo apt autoremove"
+# alias inst="sudo apt install"
+# alias searchy="apt search"
+# alias modzsh="sudo vim ~/.zshrc"
+# alias modfile="sudo vim"
+
+alias upy="sudo dnf update && sudo dnf upgrade && sudo dnf autoremove && sudo flatpak update -y"
+alias inst="sudo dnf install"
+alias searchy="dnf search"
+alias modzsh="sudo vim ~/.zshrc"
+alias modfile="sudo vim"
 
 eval "$(starship init zsh)"
 
