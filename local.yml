@@ -71,6 +71,7 @@
         - dnf-plugins-core
         - flameshot
         - flatpak
+        - obsidian
       state: latest
 
   - name: Add flathub repo
@@ -107,6 +108,11 @@
       - com.brave.Browser
       - com.visualstudio.code
       remote: flathub
+  
+  - name: pull Obsidian folder
+    ansible.builtin.git:
+      repo: https://github.com/ogre14t/Notes.git
+      dest: /home/owen
 
 
   - name: run shell script to install starship
