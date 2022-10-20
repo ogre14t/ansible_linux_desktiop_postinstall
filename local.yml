@@ -71,7 +71,6 @@
         - dnf-plugins-core
         - flameshot
         - flatpak
-        - obsidian
       state: latest
 
   - name: Add flathub repo
@@ -107,6 +106,7 @@
       - com.synology.SynologyDrive
       - com.brave.Browser
       - com.visualstudio.code
+      - md.obsidian.Obsidian
       remote: flathub
   
   - name: pull Obsidian folder
