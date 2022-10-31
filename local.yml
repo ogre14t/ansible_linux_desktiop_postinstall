@@ -6,25 +6,25 @@
   tasks:
   - name: import rpmfusion free security keys
     rpm_key:
-      key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
+      key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2022
       state: present
     when: ansible_distribution == "Fedora"
 
   - name: import rpmfusion nonfree security keys
     rpm_key:
-      key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
+      key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2022
       state: present
     when: ansible_distribution == "Fedora"
 
   - name: add rpmfusion repo
     dnf:
-      name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-36.noarch.rpm
+      name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-37.noarch.rpm
       state: present
     when: ansible_distribution == "Fedora"
 
   - name: add rpmfusion nonfree repo
     dnf:
-      name: https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-36.noarch.rpm
+      name: https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-37.noarch.rpm
       state: present
     when: ansible_distribution == "Fedora"
 
