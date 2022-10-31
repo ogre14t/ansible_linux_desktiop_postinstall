@@ -6,13 +6,13 @@
   tasks:
   - name: import rpmfusion free security keys
     rpm_key:
-      key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2022
+      key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
       state: present
     when: ansible_distribution == "Fedora"
 
   - name: import rpmfusion nonfree security keys
     rpm_key:
-      key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2022
+      key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
       state: present
     when: ansible_distribution == "Fedora"
 
