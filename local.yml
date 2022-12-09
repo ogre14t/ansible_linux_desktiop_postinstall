@@ -49,8 +49,7 @@
   - name: install packages
     package: 
       name: 
-        - htop
-        - util-linux-user
+        - htop        
         - cronie
         - curl
         - wget
@@ -60,16 +59,29 @@
         - gnome-tweaks
         - tmux
         - vim
-        - python3-psutil
-        - python3-pip
         - calibre
         - gimp
         - inkscape
         - libreoffice
-        - dnf-plugins-core
         - flameshot
         - flatpak
       state: latest
+
+  - name: install Fedora specific
+    package:
+      name:
+        - util-linux-user
+        - python3-psutil
+        - python3-pip
+        - dnf-plugins-core
+    when: ansible_distribution == "Fedora"
+
+  - name: install Arch specific
+    package:
+      name:
+        - python-pip
+        - python-psutil
+    when: ansible_distribution == "Arch, Manjaro, EndavourOS, Arco"
 
   - name: Add flathub repo
     command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -93,6 +105,7 @@
       name:
       - org.gnome.Extensions
       remote: fedora
+    when: ansible_distribution == "Fedora"
 
   - name: install flatpak packages from flathub
     community.general.flatpak:
