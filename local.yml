@@ -1,0 +1,187 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+  - name: import rpmfusion free security keys
+    rpm_key:
+      key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
+      state: present
+    when: ansible_distribution == "Fedora"
+
+  - name: import rpmfusion nonfree security keys
+    rpm_key:
+      key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
+      state: present
+    when: ansible_distribution == "Fedora"
+
+  - name: add rpmfusion repo
+    dnf:
+      name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-37.noarch.rpm
+      state: present
+    when: ansible_distribution == "Fedora"
+
+  - name: add rpmfusion nonfree repo
+    dnf:
+      name: https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-37.noarch.rpm
+      state: present
+    when: ansible_distribution == "Fedora"
+
+  - name: update and upgrade dnf
+    dnf:
+      name: '*'
+      state: latest
+    when: ansible_distribution == "Fedora"
+
+  - name: update and upgrade apt
+    apt:
+      name: '*'
+      state: latest
+    when: ansible_distribution == "Ubuntu, Debian, Pop!_OS, Linux Mint"
+
+  - name: update and upgrade pacman
+    pacman:
+      name: '*'
+      state: latest
+    when: ansible_distribution == "Arch, Manjaro, EndeavourOS, Antergos"
+
+  - name: install and configure yay
+    community.general.aur:
+      name: yay
+      state: present
+      update: yes
+      build_dir: /tmp/yay
+    when: ansible_distribution == "Arch, Manjaro, EndeavourOS, Antergos"
+
+  - name: install and configure pamac-all
+    community.general.aur:
+      name: pamac-all
+      state: present
+      update: yes
+      build_dir: /tmp/pamac-all
+    when: ansible_distribution == "Arch, Manjaro, EndeavourOS, Antergos"
+
+  - name: install packages
+    package: 
+      name: 
+        - htop
+        - util-linux-user
+        - cronie
+        - curl
+        - wget
+        - git
+        - zsh
+        - neofetch
+        - gnome-tweaks
+        - tmux
+        - vim
+        - python3-psutil
+        - python3-pip
+        - calibre
+        - gimp
+        - inkscape
+        - libreoffice
+        - dnf-plugins-core
+        - flameshot
+        - flatpak
+      state: latest
+
+  - name: Add flathub repo
+    command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+  - name: add the flathub repo
+    community.general.flatpak_remote:
+      name: flathub
+      state: present
+      flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+      method: user
+
+  - name: add the flathub-beta repo
+    community.general.flatpak_remote:
+      name: flathub-beta
+      state: present
+      flatpakrepo_url: https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+      method: user
+
+  - name: install flatpak packages from fedora
+    community.general.flatpak:
+      name:
+      - org.gnome.Extensions
+      remote: fedora
+
+  - name: install flatpak packages from flathub
+    community.general.flatpak:
+      name:
+      - com.bitwarden.desktop
+      - com.discordapp.Discord
+      - com.slack.Slack
+      - org.signal.Signal
+      - com.synology.SynologyDrive
+      - com.brave.Browser
+      - md.obsidian.Obsidian
+      remote: flathub
+
+  - name: run shell script to install starship
+    shell: curl -fsSL https://starship.rs/install.sh | sh -s -- -y
+
+  - name: install vim-plug
+    shell: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+  - name: copy wallpaper folder
+    copy:
+      src: files/wallpapers
+      dest: /home/owen/Pictures/wallpapers
+      owner: root
+      group: root
+
+  - name: copy .bashrc file
+    copy:
+      src: files/.bashrc
+      dest: /home/owen/.bashrc
+      owner: owen
+      group: owen
+
+  - name: copy .vimrc file
+    copy:
+      src: files/.vimrc
+      dest: /home/owen/.vimrc
+      owner: owen
+      group: owen
+
+  - name: copy .zshrc file
+    copy:
+      src: files/.zshrc
+      dest: /home/owen/.zshrc
+      owner: owen
+      group: owen
+
+  - name: copy starship.toml file
+    copy:
+      src: files/starship.toml
+      dest: /home/owen/.config/starship.toml
+      owner: owen
+      group: owen
+
+  - name: set zsh as default shell
+    shell: chsh -s /bin/zsh owen
+
+  - name: add ansible user
+    user: 
+      name: ansible_user
+      system: yes
+
+  - name: add ansible user to sudoers
+    copy:
+      src: files/ansible_user
+      dest: /etc/sudoers.d/ansible_user
+      owner: root
+      group: root
+      mode: 0440
+
+  - name: add ansible-pull cron job
+    cron:
+      name: "ansible-pull"
+      user: "ansible_user"
+      minute: "*/10"
+      job: "ansible-pull -o -U https://github.com/ogre14t/ansible_linux_desktop_postinstall.git"
