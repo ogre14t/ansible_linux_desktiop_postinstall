@@ -65,6 +65,7 @@
         - libreoffice
         - flameshot
         - flatpak
+        - stow
       state: latest
 
   - name: install Fedora specific
@@ -125,40 +126,46 @@
   - name: install vim-plug
     shell: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-  - name: copy wallpaper folder
-    copy:
-      src: files/wallpapers
-      dest: /usr/share/backgrounds/mine
-      owner: root
-      group: root
+  - name: copy_dotfiles
+    shell: mkdir git_repos && git clone https://github.com/ogre14t/dotfiles.git git_repos/
 
-  - name: copy .bashrc file
-    copy:
-      src: files/.bashrc
-      dest: /home/owen/.bashrc
-      owner: owen
-      group: owen
+  - name: set_stow
+    shell: stow ~/git_repos/dotfiles
 
-  - name: copy .vimrc file
-    copy:
-      src: files/.vimrc
-      dest: /home/owen/.vimrc
-      owner: owen
-      group: owen
+  # - name: copy wallpaper folder
+  #   copy:
+  #     src: files/wallpapers
+  #     dest: /usr/share/backgrounds/mine
+  #     owner: root
+  #     group: root
 
-  - name: copy .zshrc file
-    copy:
-      src: files/.zshrc
-      dest: /home/owen/.zshrc
-      owner: owen
-      group: owen
+  # - name: copy .bashrc file
+  #   copy:
+  #     src: files/.bashrc
+  #     dest: /home/owen/.bashrc
+  #     owner: owen
+  #     group: owen
 
-  - name: copy starship.toml file
-    copy:
-      src: files/starship.toml
-      dest: /home/owen/.config/starship.toml
-      owner: owen
-      group: owen
+  # - name: copy .vimrc file
+  #   copy:
+  #     src: files/.vimrc
+  #     dest: /home/owen/.vimrc
+  #     owner: owen
+  #     group: owen
+
+  # - name: copy .zshrc file
+  #   copy:
+  #     src: files/.zshrc
+  #     dest: /home/owen/.zshrc
+  #     owner: owen
+  #     group: owen
+
+  # - name: copy starship.toml file
+  #   copy:
+  #     src: files/starship.toml
+  #     dest: /home/owen/.config/starship.toml
+  #     owner: owen
+  #     group: owen
 
   - name: set zsh as default shell
     shell: chsh -s /bin/zsh owen
