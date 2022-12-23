@@ -127,7 +127,7 @@
     shell: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   - name: copy_dotfiles
-    shell: mkdir ~/git_repos && git clone https://github.com/ogre14t/dotfiles.git git_repos/
+    shell: mkdir /home/owen/git_repos && git clone https://github.com/ogre14t/dotfiles.git git_repos/
 
   # - name: set_stow
   #   shell: stow ~/git_repos/dotfiles
