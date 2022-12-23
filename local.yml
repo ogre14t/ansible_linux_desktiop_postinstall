@@ -129,8 +129,8 @@
   - name: copy_dotfiles
     shell: mkdir git_repos && git clone https://github.com/ogre14t/dotfiles.git git_repos/
 
-  - name: set_stow
-    shell: stow ~/git_repos/dotfiles
+  # - name: set_stow
+  #   shell: stow ~/git_repos/dotfiles
 
   # - name: copy wallpaper folder
   #   copy:
