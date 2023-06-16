@@ -18,13 +18,13 @@
 
   - name: add rpmfusion repo
     dnf:
-      name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-37.noarch.rpm
+      name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-38.noarch.rpm
       state: present
     when: ansible_distribution == "Fedora"
 
   - name: add rpmfusion nonfree repo
     dnf:
-      name: https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-37.noarch.rpm
+      name: https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-38.noarch.rpm
       state: present
     when: ansible_distribution == "Fedora"
 
