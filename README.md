@@ -18,3 +18,7 @@ git-credential-manager-core configure
 git config --global credential.credentialStore secretservice
 
 pull Obsidian folder
+
+## local install
+git clone the repo
+`sudo ansible-playbook local.yaml`
